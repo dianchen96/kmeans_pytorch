@@ -39,7 +39,6 @@ def kmeans(
     :param iter_limit: hard limit for max number of iterations
     :return: (torch.tensor, torch.tensor) cluster ids, cluster centers
     """
-    print(f'running k-means on {device}..')
 
     if distance == 'euclidean':
         pairwise_distance_function = pairwise_distance
@@ -58,7 +57,6 @@ def kmeans(
     if type(cluster_centers) == list: #ToDo: make this less annoyingly weird
         initial_state = initialize(X, num_clusters)
     else:
-        print('resuming')
         # find data point closest to the initial cluster center
         initial_state = cluster_centers
         dis = pairwise_distance_function(X, initial_state)
@@ -122,7 +120,6 @@ def kmeans_predict(
     :param device: (torch.device) device [default: 'cpu']
     :return: (torch.tensor) cluster ids
     """
-    print(f'predicting on {device}..')
 
     if distance == 'euclidean':
         pairwise_distance_function = pairwise_distance
