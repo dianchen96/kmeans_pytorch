@@ -80,7 +80,8 @@ def kmeans(
 
             selected = torch.index_select(X, 0, selected)
 
-            initial_state[index] = selected.mean(dim=0)
+            if torch.isnan(selected.mean(dim=0)).sum()==0:
+                initial_state[index] = selected.mean(dim=0)
 
         center_shift = torch.sum(
             torch.sqrt(
