@@ -153,7 +153,7 @@ def pairwise_distance(data1, data2, device=torch.device('cpu')):
 
     dis = (A - B) ** 2.0
     # return N*N matrix for pairwise distance
-    dis = dis.sum(dim=-1).squeeze()
+    dis = dis.sum(dim=-1).squeeze(-1)
     return dis
 
 
@@ -174,6 +174,6 @@ def pairwise_cosine(data1, data2, device=torch.device('cpu')):
     cosine = A_normalized * B_normalized
 
     # return N*N matrix for pairwise distance
-    cosine_dis = 1 - cosine.sum(dim=-1).squeeze()
+    cosine_dis = 1 - cosine.sum(dim=-1).squeeze(-1)
     return cosine_dis
 
